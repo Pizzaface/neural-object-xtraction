@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "imagesegmentation"
+version = "0.1.0"
+description = ""
+authors = ["Jordan Pizza <Pizzaface@users.noreply.github.com>"]
+readme = "README.md"
+
+[[tool.poetry.source]]
+name = "pypi"
+priority = 'default'
+
+[[tool.poetry.source]]
+name = 'pytorch-cuda121'
+url = 'https://download.pytorch.org/whl/cu121'
+priority = "explicit"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+progressbar2 = "^4.4.2"
+gdown = "^5.1.0"
+thinplate = {git = "https://github.com/cheind/py-thin-plate-spline"}
+hickle = "^5.0.3"
+tensorboard = "^2.16.2"
+numpy = "^1.26.4"
+segment-anything = {git = "https://github.com/facebookresearch/segment-anything.git"}
+gradio = "^4.26.0"
+opencv-python = "^4.9.0.80"
+matplotlib = "^3.8.4"
+pyyaml = "^6.0.1"
+av = "^12.0.0"
+openmim = "^0.3.9"
+tqdm = "^4.66.2"
+psutil = "^5.9.8"
+torch = {version = "*", source = "pytorch-cuda121"}
+torchvision = {version = "*", source = "pytorch-cuda121"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
