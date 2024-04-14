@@ -12,5 +12,5 @@ test_sample/
 result/
 vots/
 vots.py
-.idea/
+.idea
 *.iml

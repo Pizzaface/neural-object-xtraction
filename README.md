@@ -1,4 +1,4 @@
-## NOX-ify
+## Neural Object eXtractor (NOX)
 
 This will help you set up the user interface to create Matte Masks from tracked footage.
 

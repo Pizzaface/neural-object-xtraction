@@ -590,7 +590,7 @@ if __name__ == '__main__':
         SAM_checkpoint, xmem_checkpoint, e2fgvi_checkpoint, args
     )
 
-    title = """<p><h1 align="center">NOX-ify</h1></p>
+    title = """<p><h1 align="center">Neural Object eXtraction (NOX)</h1></p>
         """
     description = """<p>
     An altered version of the Gradio demo for <a href='https://github.com/gaomingqi/Track-Anything'>Track Anything</a> that provides a matte mask for a tracked segment.
