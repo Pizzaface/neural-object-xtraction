@@ -581,9 +581,6 @@ if __name__ == '__main__':
     e2fgvi_checkpoint = download_checkpoint_from_google_drive(
         e2fgvi_checkpoint_id, folder, e2fgvi_checkpoint
     )
-    args.port = 12212
-    args.device = 'cuda:0'
-    # args.mask_save = True
 
     # initialize sam, xmem, e2fgvi models
     model = TrackingAnything(
@@ -596,7 +593,12 @@ if __name__ == '__main__':
     An altered version of the Gradio demo for <a href='https://github.com/gaomingqi/Track-Anything'>Track Anything</a> that provides a matte mask for a tracked segment.
     </p>"""
 
-    with gr.Blocks() as iface:
+    with gr.Blocks(
+        title='Neural Object eXtraction (NOX)',
+        css='body {background-color: #f8f9fa;}',
+        analytics_enabled=False,
+
+    ) as iface:
         """
         state for
         """
@@ -629,6 +631,7 @@ if __name__ == '__main__':
         gr.Markdown(title)
         gr.Markdown(description)
 
+
         with gr.Row():
             with gr.Column():
                 video_input = gr.Video(
@@ -654,13 +657,15 @@ if __name__ == '__main__':
                     visible=True,
                 )
 
-
         with gr.Row():
             run_status = gr.HighlightedText(
                 value=[
                 ],
                 visible=False,
+                container=True,
                 label='Operation Log',
+                scale=1,
+
             )
 
         with gr.Row():
@@ -917,5 +922,5 @@ if __name__ == '__main__':
             outputs=[template_frame, click_state, run_status],
         )
 
-    iface.queue(max_size=2)
+    iface.queue()
     iface.launch(debug=True, server_port=args.port, prevent_thread_lock=True)

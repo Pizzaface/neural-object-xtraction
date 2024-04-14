@@ -89,7 +89,7 @@ def parse_augment():
     parser.add_argument(
         '--port',
         type=int,
-        default=6080,
+        default=12212,
         help='only useful when running gradio applications',
     )
     parser.add_argument('--debug', action='store_true')
