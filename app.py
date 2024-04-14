@@ -296,9 +296,17 @@ def sam_refine(
     operation_log = [
         ('', ''),
         (
-            'Use SAM for segment. You can try add positive and negative points by clicking. Or press Clear clicks button to refresh the image. Press Add mask button when you are satisfied with the segment',
+            'Click the image to add points for tracking. Press "Add mask" when you are satisfied with the mask.',
             'Normal',
         ),
+        (
+            'Click "Clear clicks" to clear the points history and reset the points.',
+            'Normal',
+        ),
+        (
+            'Click "Track Video" to track the video with the selected mask(s).',
+            'Normal',
+        )
     ]
     return painted_image, video_state, interactive_state, operation_log
 
@@ -631,7 +639,7 @@ if __name__ == '__main__':
 
             with gr.Column():
                 extract_frames_button = gr.Button(
-                    value='Get video info',
+                    value='Process Video',
                     interactive=True,
                     variant='primary',
                 )
@@ -648,15 +656,16 @@ if __name__ == '__main__':
 
 
         with gr.Row():
+            run_status = gr.HighlightedText(
+                value=[
+                ],
+                visible=False,
+                label='Operation Log',
+            )
+
+        with gr.Row():
             # put the template frame under the radio button
             with gr.Column():
-                run_status = gr.HighlightedText(
-                    value=[
-                    ],
-                    visible=False,
-                    label='Operation Log',
-                )
-
                 mask_dropdown = gr.Dropdown(
                     multiselect=True,
                     value=[],
@@ -665,7 +674,6 @@ if __name__ == '__main__':
                     visible=False,
                 )
 
-            with gr.Column():
                 brightness_threshold_slider = gr.Slider(
                     minimum=1,
                     maximum=255,
@@ -723,15 +731,16 @@ if __name__ == '__main__':
                 template_frame = gr.Image(
                     type='pil',
                     interactive=True,
+                    label="Preview (click to add points)",
                     elem_id='template_frame',
                     visible=False,
                 )
                 tracking_video_predict_button = gr.Button(
-                    value='Tracking', visible=False
+                    value='Track Video', visible=False
                 )
 
         with gr.Row():
-            video_output = gr.Video(visible=False)
+            video_output = gr.Video(visible=False, label='Tracking result')
 
         # first step: get the video information
         extract_frames_button.click(
