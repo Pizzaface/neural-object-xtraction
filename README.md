@@ -2,10 +2,7 @@
 
 ## Neural Object eXtractor (NOX)
 
-
 Uses Track Anything to generate a Matte Mask for a video file.
-
-The code has been changed a lot to remove the inpainting features which I find unnecessary.
 
 The code is based on the original code from the [Track Anything](https://github.com/gaomingqi/Track-Anything) with some changes to focus on the Mask generation rather than inpainting.
 </p>
